@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.26228.4
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartHouse", "SmartHouse\SmartHouse.csproj", "{0097E0A3-1D59-4E5F-B4A0-E457BAEAF333}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartHousLibrary", "SmartHousLibrary\SmartHousLibrary.csproj", "{2BC93DE5-0B5E-4384-9BA8-DA18B7FF927B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartHouseLibrary", "SmartHousLibrary\SmartHouseLibrary.csproj", "{2BC93DE5-0B5E-4384-9BA8-DA18B7FF927B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SmartHouseLibrary
+namespace SmartHousLibrary
 {
-    public class Sensor
+    public interface IDimmer
     {
+        int DimmerUp();
+        int DimmerDown();
     }
 }

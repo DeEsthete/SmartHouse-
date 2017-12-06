@@ -4,9 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SmartHousLibrary
+namespace SmartHouseLibrary
 {
-    class Perfomers
+    public class Perfomers
     {
+        Device[] entity = new Device[10];
+
+        public Perfomers()
+        {
+
+        }
     }
 }

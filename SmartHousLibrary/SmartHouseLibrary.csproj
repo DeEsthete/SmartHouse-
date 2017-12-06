@@ -42,11 +42,20 @@
   <ItemGroup>
     <Compile Include="Control.cs" />
     <Compile Include="Hub.cs" />
-    <Compile Include="Entity.cs" />
+    <Compile Include="Device.cs" />
+    <Compile Include="IDimmer.cs" />
+    <Compile Include="ISender.cs" />
+    <Compile Include="light.cs" />
+    <Compile Include="Logic.cs" />
+    <Compile Include="Notification.cs" />
     <Compile Include="Perfomers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Protocol.cs" />
+    <Compile Include="Scenario.cs" />
+    <Compile Include="Secutiry.cs" />
     <Compile Include="Sensor.cs" />
+    <Compile Include="ISwitcher.cs" />
+    <Compile Include="User.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

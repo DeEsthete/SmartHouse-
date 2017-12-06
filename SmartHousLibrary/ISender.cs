@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SmartHouseLibrary
+namespace SmartHousLibrary
 {
-    public class Sensor
+    public interface ISender
     {
+        void SendMessage(string message);
     }
 }

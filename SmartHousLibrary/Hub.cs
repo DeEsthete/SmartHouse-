@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SmartHousLibrary
+namespace SmartHouseLibrary
 {
-    class Hub
+    public class Hub
     {
-
+        Device[] obj;
     }
 }

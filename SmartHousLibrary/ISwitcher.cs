@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace SmartHousLibrary
 {
-    public class Entity
+   public interface ISwitcher
     {
+        void TurnOn();
+        void TurnOff();
     }
 }

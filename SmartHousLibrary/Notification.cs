@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace SmartHouseLibrary
 {
-    public class Sensor
+    public class Notification//Уведомления
     {
+
     }
 }
