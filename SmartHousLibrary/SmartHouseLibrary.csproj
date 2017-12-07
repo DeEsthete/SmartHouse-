@@ -55,6 +55,7 @@
     <Compile Include="ISwitcher.cs" />
     <Compile Include="StructSensorInformation.cs" />
     <Compile Include="User.cs" />
+    <Compile Include="UserOptions.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
