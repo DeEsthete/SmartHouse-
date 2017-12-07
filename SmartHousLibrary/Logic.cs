@@ -8,5 +8,8 @@ namespace SmartHousLibrary
 {
     public class Logic
     {
+        //
+        //arduino
+        //
     }
 }

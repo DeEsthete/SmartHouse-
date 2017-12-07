@@ -8,6 +8,6 @@ namespace SmartHouseLibrary
 {
     public class Hub
     {
-        Device[] obj;
+        public Device[] obj { get; set; }
     }
 }

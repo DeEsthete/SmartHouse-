@@ -8,5 +8,6 @@ namespace SmartHouseLibrary
 {
     public class Control
     {
+        //menu
     }
 }

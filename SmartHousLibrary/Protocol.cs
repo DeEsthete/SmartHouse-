@@ -8,6 +8,6 @@ namespace SmartHouseLibrary
 {
     public class Protocol
     {
-
+        //ToDo //но это не точно
     }
 }

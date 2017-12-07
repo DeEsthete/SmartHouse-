@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SmartHousLibrary
 {
-    public class Scenario:Device
+    public class Scenario : Device
     {
         public Device device { set; get; }
         public bool IsOn { set; get; }
