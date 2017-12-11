@@ -1,0 +1,5 @@
+C:\Users\ПавловЕ\documents\visual studio 2017\Projects\SmartHouse\SmartHousLibrary\bin\Debug\SmartHousLibrary.dll
+C:\Users\ПавловЕ\documents\visual studio 2017\Projects\SmartHouse\SmartHousLibrary\bin\Debug\SmartHousLibrary.pdb
+C:\Users\ПавловЕ\documents\visual studio 2017\Projects\SmartHouse\SmartHousLibrary\obj\Debug\SmartHousLibrary.dll
+C:\Users\ПавловЕ\documents\visual studio 2017\Projects\SmartHouse\SmartHousLibrary\obj\Debug\SmartHousLibrary.pdb
+C:\Users\ПавловЕ\documents\visual studio 2017\Projects\SmartHouse\SmartHousLibrary\obj\Debug\SmartHouseLibrary.csprojResolveAssemblyReference.cache

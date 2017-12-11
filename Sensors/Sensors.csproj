@@ -47,10 +47,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SmartHouse\SmartHouse.csproj">
-      <Project>{0097e0a3-1d59-4e5f-b4a0-e457baeaf333}</Project>
-      <Name>SmartHouse</Name>
-    </ProjectReference>
     <ProjectReference Include="..\SmartHousLibrary\SmartHouseLibrary.csproj">
       <Project>{2BC93DE5-0B5E-4384-9BA8-DA18B7FF927B}</Project>
       <Name>SmartHouseLibrary</Name>

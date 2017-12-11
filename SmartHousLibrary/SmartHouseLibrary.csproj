@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConsoleMenu.cs" />
     <Compile Include="Control.cs" />
     <Compile Include="Hub.cs" />
     <Compile Include="Device.cs" />

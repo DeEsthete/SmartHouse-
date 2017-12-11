@@ -48,5 +48,15 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Sensors\Sensors.csproj">
+      <Project>{b87d9385-a9ff-4ce2-8293-e9c875bac734}</Project>
+      <Name>Sensors</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SmartHousLibrary\SmartHouseLibrary.csproj">
+      <Project>{2bc93de5-0b5e-4384-9ba8-da18b7ff927b}</Project>
+      <Name>SmartHouseLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
