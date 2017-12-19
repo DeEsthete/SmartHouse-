@@ -8,3 +8,8 @@ C:\Users\ПавловЕ\Desktop\cow\SmartHousLibrary\bin\Debug\SmartHousLibrary.
 C:\Users\ПавловЕ\Desktop\cow\SmartHousLibrary\obj\Debug\SmartHouseLibrary.csprojResolveAssemblyReference.cache
 C:\Users\ПавловЕ\Desktop\cow\SmartHousLibrary\obj\Debug\SmartHousLibrary.dll
 C:\Users\ПавловЕ\Desktop\cow\SmartHousLibrary\obj\Debug\SmartHousLibrary.pdb
+C:\My Documents\Visual Studio 2017\Projects\SmartHouse\SmartHousLibrary\bin\Debug\SmartHousLibrary.dll
+C:\My Documents\Visual Studio 2017\Projects\SmartHouse\SmartHousLibrary\bin\Debug\SmartHousLibrary.pdb
+C:\My Documents\Visual Studio 2017\Projects\SmartHouse\SmartHousLibrary\obj\Debug\SmartHouseLibrary.csprojResolveAssemblyReference.cache
+C:\My Documents\Visual Studio 2017\Projects\SmartHouse\SmartHousLibrary\obj\Debug\SmartHousLibrary.dll
+C:\My Documents\Visual Studio 2017\Projects\SmartHouse\SmartHousLibrary\obj\Debug\SmartHousLibrary.pdb

@@ -8,6 +8,6 @@ namespace SmartHousLibrary
 {
     public interface ISender
     {
-        void SendMessage(string message);
+        void SendMessage();
     }
 }

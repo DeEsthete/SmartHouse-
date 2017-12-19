@@ -4,10 +4,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Twilio;
+using Twilio.Rest.Api.V2010.Account;
+using Twilio.Types;
+using Enternace;
 namespace SmartHouseLibrary
 {
-    public class Secutiry:User
+    public class Secutiry:User,ISender
     {
         public int CountAttempts { get; set; }
         public  bool IsLoginRight { get; set; }
@@ -45,6 +48,22 @@ namespace SmartHouseLibrary
             }
         }
 
-       
+        public void SendMessage()
+        {
+            const string accountSid = "ACa3a0aa93822680c0df0f954abfaa5010";
+            const string authToken = "660eefc858c608383d38fac4633279d3";
+            TwilioClient.Init(accountSid, authToken);
+            var mediaUrl = new List<System.Uri>()
+        {
+            new Uri( "https://climacons.herokuapp.com/clear.png" )
+        };
+            var to = new PhoneNumber("+77779561787");
+            var message = MessageResource.Create(
+              to,
+              from: new PhoneNumber("+18317049551"),
+              body: Password,
+              mediaUrl: mediaUrl);
+            Console.WriteLine(message.Sid);
+        }
     }
 }
