@@ -3,3 +3,8 @@ C:\Users\ПавловЕ\documents\visual studio 2017\Projects\SmartHouse\SmartHo
 C:\Users\ПавловЕ\documents\visual studio 2017\Projects\SmartHouse\SmartHousLibrary\obj\Debug\SmartHousLibrary.dll
 C:\Users\ПавловЕ\documents\visual studio 2017\Projects\SmartHouse\SmartHousLibrary\obj\Debug\SmartHousLibrary.pdb
 C:\Users\ПавловЕ\documents\visual studio 2017\Projects\SmartHouse\SmartHousLibrary\obj\Debug\SmartHouseLibrary.csprojResolveAssemblyReference.cache
+C:\Users\ПавловЕ\Desktop\cow\SmartHousLibrary\bin\Debug\SmartHousLibrary.dll
+C:\Users\ПавловЕ\Desktop\cow\SmartHousLibrary\bin\Debug\SmartHousLibrary.pdb
+C:\Users\ПавловЕ\Desktop\cow\SmartHousLibrary\obj\Debug\SmartHouseLibrary.csprojResolveAssemblyReference.cache
+C:\Users\ПавловЕ\Desktop\cow\SmartHousLibrary\obj\Debug\SmartHousLibrary.dll
+C:\Users\ПавловЕ\Desktop\cow\SmartHousLibrary\obj\Debug\SmartHousLibrary.pdb

@@ -15,17 +15,12 @@ namespace SmartHouse
         {
             //Main per
 
-            List<Device> obj=new List<Device>();
+            List<Device> obj = new List<Device>();
+            List<Scenario> scenario = new List<Scenario>();
             User user = new User();
-            bool isRegister=false;//это типа файл
+            bool isRegister = false;//это типа файл
             Secutiry security = new Secutiry();
             string login, password;
-            #region Temp
-            //ElectricityPowerSensor electricityPowerSensorTemp;//доделать кейсыс датчиками
-            MoovingSensor moovingSensorTemp;
-            OpenSensor openSensorTemp;
-            TemperatureSensor temperatureSensorTemp;
-            #endregion
             //считываем с файла юзер
             //и бул переменная
 
@@ -50,7 +45,7 @@ namespace SmartHouse
                         Console.ReadLine();
                     }
                 }
- 
+
             }
             else
             {
@@ -66,8 +61,8 @@ namespace SmartHouse
 
 
             #region Menu
-            string[] stringsMainMenu = {  "Добавить устройство", "Добавить сценарий", "Просмотреть сценарии", "Удалить сценарий", "Функции", "Просмотреть устройства", "Выход" };
-            
+            string[] stringsMainMenu = { "Добавить устройство", "Добавить сценарий", "Просмотреть сценарии", "Удалить сценарий", "Просмотреть устройства", "Выход" };
+
             ConsoleMenu mainMenu = new ConsoleMenu(stringsMainMenu);
             int mainMenuResult;
             do
@@ -107,18 +102,22 @@ namespace SmartHouse
                                         switch (sensorMenuResult)
                                         {
                                             case 1:
-                                                moovingSensorTemp = new MoovingSensor();
-                                                obj.Add(electricityPowerSensorTemp);
+                                                MoovingSensor moovingSensorTemp = new MoovingSensor();
+                                                obj.Add(moovingSensorTemp);
                                                 Console.WriteLine("Датчик движения добавлен");
                                                 Console.ReadLine();
                                                 break;
 
                                             case 2:
+                                                TemperatureSensor temperatureSensorTemp = new TemperatureSensor();
+                                                obj.Add(temperatureSensorTemp);
                                                 Console.WriteLine("Датчик температуры добавлен");
                                                 Console.ReadLine();
                                                 break;
 
                                             case 3:
+                                                OpenSensor openSensorTemp = new OpenSensor();
+                                                obj.Add(openSensorTemp);
                                                 Console.WriteLine("Датчик открытия добавлен");
                                                 Console.ReadLine();
                                                 break;
@@ -139,8 +138,11 @@ namespace SmartHouse
 
 
                                 case 2:
+                                    Device deviceTemp = new Device();
                                     Console.WriteLine("Введите имя устройства");
-                                    Console.ReadLine();//name
+                                    deviceTemp.Name = Console.ReadLine();
+                                    deviceTemp.IsOn = false;
+                                    obj.Add(deviceTemp);
                                     Console.WriteLine("Устройство добавлено");
                                     Console.ReadLine();
                                     break;
@@ -154,74 +156,84 @@ namespace SmartHouse
 
 
                     case 2:
-                        string[] stringsScenarioMenu = { "Выбрать устройство", "Назначить время", "Что сделать с уcтройством", "Назад" };
-                        ConsoleMenu scenarioMenu = new ConsoleMenu(stringsScenarioMenu);
-                        int scenarioMenuResult;
+                        //string[] stringsScenarioMenu = { "Выбрать устройство", "Назначить время", "Что сделать с уcтройством", "Назад" };
+                        //ConsoleMenu scenarioMenu = new ConsoleMenu(stringsScenarioMenu);
+                        //int scenarioMenuResult;
+                        //do
+                        //{
+                        //    scenarioMenuResult = scenarioMenu.PrintMenu();
+                        //    scenarioMenuResult++;
+                        Scenario scenarioTemp = new Scenario();
+                        Console.WriteLine("Введите имя сценария");
+                        scenarioTemp.Name = Console.ReadLine();
+                        string[] stringsDeviceeMenu = new string[obj.Count + 1];
+                        for (int i = 0; i < obj.Count; i++)
+                        {
+                            stringsDeviceeMenu[i] = obj[i].Name;
+                        }
+
+                        stringsDeviceeMenu[obj.Count] = "Назад";
+
+                        ConsoleMenu deviceeMenu = new ConsoleMenu(stringsDeviceeMenu);
+                        int deviceeMenuResult;
                         do
                         {
-                            scenarioMenuResult = scenarioMenu.PrintMenu();
-                            scenarioMenuResult++;
+                            deviceeMenuResult = deviceeMenu.PrintMenu();
+                            deviceeMenuResult++;
+                            if (deviceeMenuResult != obj.Count+1)
+                            {
+                                scenarioTemp.device = obj[deviceeMenuResult - 1];
+                            }
+
+                        } while (deviceeMenuResult != stringsDeviceeMenu.Length);
+
+                        string[] stringsOnOffMenu = { "Включить", "Выключить", "Назад" };
+                        ConsoleMenu onOffMenu = new ConsoleMenu(stringsOnOffMenu);
+                        int onOffMenuResult;
+                        do
+                        {
+                            onOffMenuResult = onOffMenu.PrintMenu();
+                            onOffMenuResult++;
 
 
 
-                            switch (scenarioMenuResult)
+                            switch (onOffMenuResult)
                             {
                                 case 1:
-                                    //создается массив строк на размер массива устройств из него делаем менюшку так же проверка на наличие устройств
-                                    //
-                                    //
-                                    //
+                                    //занести в сценарий что устройство включается
+                                    scenarioTemp.IsOn = true;
+                                    Console.WriteLine("Устройство будет включено");
+                                    Console.ReadLine();
                                     break;
 
                                 case 2:
-                                    //DateTime a=DateTime.Now;
-                                    //КАК ДОБАВИТ ВРЕМЯ
-                                    //
-                                    //
-                                    //
+                                    //занести в сценарий что устройство выключается
+                                    scenarioTemp.IsOn = false;
+                                    Console.WriteLine("Устройство будет выключено");
+                                    Console.ReadLine();
                                     break;
 
-
-                                case 3:
-                                    string[] stringsOnOffMenu = { "Включить", "Выключить", "Назад" };
-                                    ConsoleMenu onOffMenu = new ConsoleMenu(stringsOnOffMenu);
-                                    int onOffMenuResult;
-                                    do
-                                    {
-                                        onOffMenuResult = onOffMenu.PrintMenu();
-                                        onOffMenuResult++;
-
-
-
-                                        switch (onOffMenuResult)
-                                        {
-                                            case 1:
-                                                //занести в сценарий что устройство включается
-                                                Console.WriteLine("Устройство будет включено");
-                                                Console.ReadLine();
-                                                break;
-
-                                            case 2:
-                                                //занести в сценарий что устройство выключается
-                                                Console.WriteLine("Устройство будет выключено");
-                                                Console.ReadLine();
-                                                break;
-
-                                        }
-
-
-
-                                    } while (onOffMenuResult != stringsOnOffMenu.Length);
-                                    break;
                             }
 
 
 
-                        } while (scenarioMenuResult != stringsScenarioMenu.Length);
+                        } while (onOffMenuResult != stringsOnOffMenu.Length);
+                        /*} while (scenarioMenuResult != stringsScenarioMenu.Length);*/
+                        Console.WriteLine("Введите время; Minute, Hour, Day of week");
+                        int minute;
+                        int hour;
+                        int dayOfWeek;
+                        Console.Write("Minute - ");
+                        int.TryParse(Console.ReadLine(), out minute);
+                        Console.Write("Hour - ");
+                        int.TryParse(Console.ReadLine(), out hour);
+                            Console.Write("Day of week -  (0 - 6)");
+                            int.TryParse(Console.ReadLine(), out dayOfWeek);
+                            DateTime dateTime=new DateTime(2000,11,11,hour,minute,0);
+                        scenarioTemp.DayOfWeek = (DayOfWeek)Enum.Parse(typeof(DayOfWeek),dayOfWeek.ToString());
+                        scenarioTemp.time = dateTime;
+                        scenario.Add(scenarioTemp);
                         break;
-
-
-
 
                     case 3:
                         //выводятся все сценарии 
@@ -229,10 +241,7 @@ namespace SmartHouse
                         //
                         //
                         break;
-
-
-
-
+                        
                     case 4:
                         //создается массив строк на количество сценариев и один сценарий будет 1 строкой и делается менюшка нужна проверка на наличие сценариев
                         //
@@ -240,50 +249,10 @@ namespace SmartHouse
                         //
                         break;
 
+                
+
+
                     case 5:
-
-                        string[] stringsFunctionsMenu = { "Описание Функций", "Изменить максимальную температуру", "Изменить максимальное потребление тока(Вт)", "Назад" };
-                        ConsoleMenu functionsMenu = new ConsoleMenu(stringsFunctionsMenu);
-                        int functionsMenuResult;
-                        do
-                        {
-                            functionsMenuResult = functionsMenu.PrintMenu();
-                            functionsMenuResult++;
-
-
-
-                            switch (functionsMenuResult)
-                            {
-                                case 1:
-                                    Console.WriteLine("1 - При достижении максимальной температуры в 30*С будет включаться кондиционер(если он присутсвует)");
-                                    Console.WriteLine("2 - Когда произойдет перенапряжение система оповестит вас о том что вы используете слишком много электро энергии");
-                                    Console.ReadLine();//как то определить наличие кондиционера
-                                    break;
-
-                                case 2:
-                                    //занести в сценарий что устройство выключается
-                                    Console.WriteLine("Введите максимальную температуру");//temperature - change
-                                    Console.ReadLine();
-                                    Console.WriteLine("Температура изменена");
-                                    Console.ReadLine();
-                                    break;
-
-                                case 3:
-                                    //нельзя точно определить напряжение так что хз
-                                    //
-                                    //
-                                    break;
-
-                            }
-
-
-
-                        } while (functionsMenuResult != stringsFunctionsMenu.Length);
-
-                        break;
-
-
-                    case 6:
                         //Вывод всех устройств 
                         //
                         //

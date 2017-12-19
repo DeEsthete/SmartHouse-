@@ -1,0 +1,7 @@
+C:\Users\ПавловЕ\Desktop\cow\Sensors\bin\Debug\Sensors.dll
+C:\Users\ПавловЕ\Desktop\cow\Sensors\bin\Debug\Sensors.pdb
+C:\Users\ПавловЕ\Desktop\cow\Sensors\bin\Debug\SmartHousLibrary.dll
+C:\Users\ПавловЕ\Desktop\cow\Sensors\bin\Debug\SmartHousLibrary.pdb
+C:\Users\ПавловЕ\Desktop\cow\Sensors\obj\Debug\Sensors.csprojResolveAssemblyReference.cache
+C:\Users\ПавловЕ\Desktop\cow\Sensors\obj\Debug\Sensors.dll
+C:\Users\ПавловЕ\Desktop\cow\Sensors\obj\Debug\Sensors.pdb

@@ -6,3 +6,13 @@ C:\Users\ПавловЕ\documents\visual studio 2017\Projects\SmartHouse\SmartHo
 C:\Users\ПавловЕ\documents\visual studio 2017\Projects\SmartHouse\SmartHouse\obj\Debug\SmartHouse.csprojResolveAssemblyReference.cache
 C:\Users\ПавловЕ\documents\visual studio 2017\Projects\SmartHouse\SmartHouse\obj\Debug\SmartHouse.exe
 C:\Users\ПавловЕ\documents\visual studio 2017\Projects\SmartHouse\SmartHouse\obj\Debug\SmartHouse.pdb
+C:\Users\ПавловЕ\Desktop\cow\SmartHouse\bin\Debug\SmartHouse.exe.config
+C:\Users\ПавловЕ\Desktop\cow\SmartHouse\bin\Debug\SmartHouse.exe
+C:\Users\ПавловЕ\Desktop\cow\SmartHouse\bin\Debug\SmartHouse.pdb
+C:\Users\ПавловЕ\Desktop\cow\SmartHouse\bin\Debug\Sensors.dll
+C:\Users\ПавловЕ\Desktop\cow\SmartHouse\bin\Debug\SmartHousLibrary.dll
+C:\Users\ПавловЕ\Desktop\cow\SmartHouse\bin\Debug\Sensors.pdb
+C:\Users\ПавловЕ\Desktop\cow\SmartHouse\bin\Debug\SmartHousLibrary.pdb
+C:\Users\ПавловЕ\Desktop\cow\SmartHouse\obj\Debug\SmartHouse.csprojResolveAssemblyReference.cache
+C:\Users\ПавловЕ\Desktop\cow\SmartHouse\obj\Debug\SmartHouse.exe
+C:\Users\ПавловЕ\Desktop\cow\SmartHouse\obj\Debug\SmartHouse.pdb

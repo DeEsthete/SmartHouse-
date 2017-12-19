@@ -10,5 +10,9 @@ namespace Sensors
     public class ElectricityPowerSensor:Device
     {
         public int Watt { get; set; }
+        public ElectricityPowerSensor():base()
+        {
+
+        }
     }
 }

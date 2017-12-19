@@ -10,7 +10,7 @@ namespace Sensors
     public class TemperatureSensor:Device
     {
         public double Temperature { get; set; }
-        TemperatureSensor() : base()
+        public TemperatureSensor() : base()
         {
             
         }

@@ -10,6 +10,9 @@ namespace Sensors
     public class MoovingSensor:Device
     {
         public bool IsMooving { get; set; }
+        public MoovingSensor():base()
+        {
 
+        }
     }
 }

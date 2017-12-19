@@ -10,5 +10,9 @@ namespace Sensors
     public class OpenSensor:Device
     {
         public bool IsOpen { get; set; }
+        public OpenSensor():base()
+        {
+
+        }
     }
 }
