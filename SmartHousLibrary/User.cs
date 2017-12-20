@@ -11,7 +11,7 @@ namespace SmartHousLibrary
         public string Login { set; get; }
         public string Password { set; get; }
         public DateTime CreationDate { set; get; }
-        public string Email { get; set; }
+      //  public string Email { get; set; }
        
     }
 }

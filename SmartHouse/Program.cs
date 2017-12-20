@@ -21,7 +21,7 @@ namespace SmartHouse
             bool isRegister = false;//это типа файл
             Secutiry security = new Secutiry();
             string login, password;
-            int lostPassword = 0;
+            //int lostPassword = 0;
             //считываем с файла юзер
             //и бул переменная
 
@@ -119,34 +119,34 @@ namespace SmartHouse
                                         {
                                             case 1:
                                                 MoovingSensor moovingSensorTemp = new MoovingSensor();
-                                                moovingSensorTemp.Name = "Датчик движения";
+                                                moovingSensorTemp.Name = string.Format("Датчик движения - {0}",moovingSensorTemp.Id);
                                                 obj.Add(moovingSensorTemp);
-                                                Console.WriteLine("Датчик движения добавлен");
+                                                Console.WriteLine("{0} добавлен",moovingSensorTemp.Name);
                                                 Console.ReadLine();
                                                 break;
 
                                             case 2:
                                                 TemperatureSensor temperatureSensorTemp = new TemperatureSensor();
-                                                temperatureSensorTemp.Name = "Датчик температуры";
+                                                temperatureSensorTemp.Name = string.Format("Датчик температуры - {0}",temperatureSensorTemp.Id);
                                                 obj.Add(temperatureSensorTemp);
-                                                Console.WriteLine("Датчик температуры добавлен");
+                                                Console.WriteLine("{0} добавлен",temperatureSensorTemp.Name);
                                                 Console.ReadLine();
                                                 break;
 
                                             case 3:
                                                 OpenSensor openSensorTemp = new OpenSensor();
-                                                openSensorTemp.Name = "Датчик открытия";
+                                                openSensorTemp.Name = string.Format("Датчик открытия - {0}",openSensorTemp.Id);
                                                 obj.Add(openSensorTemp);
-                                                Console.WriteLine("Датчик открытия добавлен");
+                                                Console.WriteLine("{0} добавлен",openSensorTemp.Name);
                                                 Console.ReadLine();
                                                 break;
 
                                             case 4:
                                                 ElectricityPowerSensor electricityPowerSensorTemp;
                                                 electricityPowerSensorTemp = new ElectricityPowerSensor();
-                                                electricityPowerSensorTemp.Name = "Датчик электроэнергии";
+                                                electricityPowerSensorTemp.Name = string.Format("Датчик электроэнергии - {0}",electricityPowerSensorTemp.Id);
                                                 obj.Add(electricityPowerSensorTemp);
-                                                Console.WriteLine("Датчик для контроля электроэнергией добавлен");
+                                                Console.WriteLine("{0} добавлен",electricityPowerSensorTemp.Name);
                                                 Console.ReadLine();
                                                 break;
                                         }
@@ -425,11 +425,11 @@ namespace SmartHouse
                             {
                                 if (obj[onMenuResult - 1].IsOn == true)
                                 {
-                                    obj[onMenuResult - 1].IsOn = false;
+                                    obj[onMenuResult - 1].TurnOff();
                                 }
                                 else
                                 {
-                                    obj[onMenuResult - 1].IsOn = true;
+                                    obj[onMenuResult - 1].TurnOn();
                                 }
 
                             }
