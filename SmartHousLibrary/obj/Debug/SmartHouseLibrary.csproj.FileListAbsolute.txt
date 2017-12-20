@@ -13,3 +13,9 @@ C:\My Documents\Visual Studio 2017\Projects\SmartHouse\SmartHousLibrary\bin\Debu
 C:\My Documents\Visual Studio 2017\Projects\SmartHouse\SmartHousLibrary\obj\Debug\SmartHouseLibrary.csprojResolveAssemblyReference.cache
 C:\My Documents\Visual Studio 2017\Projects\SmartHouse\SmartHousLibrary\obj\Debug\SmartHousLibrary.dll
 C:\My Documents\Visual Studio 2017\Projects\SmartHouse\SmartHousLibrary\obj\Debug\SmartHousLibrary.pdb
+C:\Users\СикировТ\Documents\Visual Studio 2017\Projects\SmartHouse\SmartHousLibrary\obj\Debug\SmartHouseLibrary.csprojResolveAssemblyReference.cache
+C:\Users\СикировТ\Documents\Visual Studio 2017\Projects\SmartHouse\SmartHousLibrary\obj\Debug\SmartHousLibrary.dll
+C:\Users\СикировТ\Documents\Visual Studio 2017\Projects\SmartHouse\SmartHousLibrary\obj\Debug\SmartHousLibrary.pdb
+C:\Users\СикировТ\Documents\Visual Studio 2017\Projects\SmartHouse\SmartHousLibrary\bin\Debug\SmartHousLibrary.dll
+C:\Users\СикировТ\Documents\Visual Studio 2017\Projects\SmartHouse\SmartHousLibrary\bin\Debug\SmartHousLibrary.pdb
+C:\Users\СикировТ\Documents\Visual Studio 2017\Projects\SmartHouse\SmartHousLibrary\bin\Debug\Microsoft.IdentityModel.Logging.dll

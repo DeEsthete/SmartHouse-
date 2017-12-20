@@ -6,10 +6,7 @@ using System.Threading.Tasks;
 using SmartHouseLibrary;
 using SmartHousLibrary;
 using Sensors;
-using Twilio;
-using Twilio.Rest.Api.V2010.Account;
-using Twilio.Types;
-using Enternace;
+
 namespace SmartHouse
 {
     class Program
@@ -45,16 +42,8 @@ namespace SmartHouse
                     }
                     else
                     {
-                        Console.WriteLine("Вы ввели неправильный логин или пароль. Повторите попытку.(Если забыли пароль введите 1)");
-                        int.TryParse(Console.ReadLine(), out lostPassword);
-                        if (lostPassword == 1)
-                        {
-                            Console.WriteLine("Введите зарегистрированный Email ");
-                            if (Console.ReadLine() == security.Email)
-                            {
-                                security.SendMessage();
-                            }
-                        }
+                        Console.WriteLine("Вы ввели неправильный логин или пароль. Повторите попытку.");
+                        
                     }
                 }
 
@@ -79,8 +68,7 @@ namespace SmartHouse
                         isRegisterSucces = true;
                     }
                 }
-                Console.WriteLine("Введите Email (нужен в случае потери пароля)");
-                user.Email = Console.ReadLine();
+               
                 user.CreationDate = DateTime.Now;
                 Console.WriteLine("Вы успешно зарегистрировались");
                 Console.ReadLine();
@@ -89,7 +77,7 @@ namespace SmartHouse
 
 
             #region Menu
-            string[] stringsMainMenu = { "Добавить устройство", "Добавить сценарий", "Просмотреть сценарии", "Удалить сценарий", "Просмотреть устройства", "Удалить устройство", "Выход" };
+            string[] stringsMainMenu = { "Добавить устройство", "Добавить сценарий", "Просмотреть сценарии", "Удалить сценарий", "Просмотреть устройства", "Удалить устройство","Включить/Выключить устройство", "Выход" };
 
             ConsoleMenu mainMenu = new ConsoleMenu(stringsMainMenu);
             int mainMenuResult;
@@ -411,6 +399,43 @@ namespace SmartHouse
                             }
                             break;
                         } while (deleteoMenuResult != stringsDeleteoMenu.Length);
+                        break;
+
+                    case 7:
+                        if (obj.Count == 0)
+                        {
+                            Console.WriteLine("Устройств нет");
+                            Console.ReadLine();
+                            break;
+                        }
+
+                        string[] stringsOnMenu = new string[obj.Count + 1];
+                        for (int i = 0; i < obj.Count; i++)
+                        {
+                            stringsOnMenu[i] = obj[i].Name;
+                        }
+                        stringsOnMenu[obj.Count] = "Назад";
+                        ConsoleMenu onMenu = new ConsoleMenu(stringsOnMenu);
+                        int onMenuResult;
+                        do
+                        {
+                           onMenuResult = onMenu.PrintMenu();
+                            onMenuResult++;
+                            if (onMenuResult != obj.Count + 1)
+                            {
+                                if (obj[onMenuResult - 1].IsOn == true)
+                                {
+                                    obj[onMenuResult - 1].IsOn = false;
+                                }
+                                else
+                                {
+                                    obj[onMenuResult - 1].IsOn = true;
+                                }
+
+                            }
+                            break;
+                        } while (onMenuResult != stringsOnMenu.Length);
+
                         break;
                 }
             } while (mainMenuResult != stringsMainMenu.Length);
