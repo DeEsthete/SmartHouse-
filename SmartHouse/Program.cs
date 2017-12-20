@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using SmartHouseLibrary;
 using SmartHousLibrary;
 using Sensors;
+using System.IO.Ports;
 
 namespace SmartHouse
 {
@@ -14,6 +15,8 @@ namespace SmartHouse
         static void Main(string[] args)
         {
             //Main per
+            
+            
 
             List<Device> obj = new List<Device>();
             List<Scenario> scenario = new List<Scenario>();
@@ -423,13 +426,16 @@ namespace SmartHouse
                             onMenuResult++;
                             if (onMenuResult != obj.Count + 1)
                             {
+                                Logic logic = new Logic();
                                 if (obj[onMenuResult - 1].IsOn == true)
                                 {
                                     obj[onMenuResult - 1].TurnOff();
+                                    logic.Ardu(obj[onMenuResult - 1].IsOn);
                                 }
                                 else
                                 {
                                     obj[onMenuResult - 1].TurnOn();
+                                    logic.Ardu(obj[onMenuResult - 1].IsOn);
                                 }
 
                             }
