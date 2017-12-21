@@ -21,7 +21,7 @@ namespace SmartHousLibrary
             }
             else
             {
-                port.WriteLine("0");
+                port.WriteLine("2");
             }
             port.Close();
         }

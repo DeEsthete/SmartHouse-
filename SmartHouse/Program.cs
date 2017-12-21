@@ -88,7 +88,7 @@ namespace SmartHouse
                     else
                     {
                         Console.WriteLine("Вы ввели неправильный логин или пароль. Повторите попытку.");
-
+                        Console.ReadLine();
                     }
                 }
             }
