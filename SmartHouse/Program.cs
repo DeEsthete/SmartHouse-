@@ -7,7 +7,7 @@ using SmartHouseLibrary;
 using SmartHousLibrary;
 using Sensors;
 using System.IO.Ports;
-
+using System.IO;
 namespace SmartHouse
 {
     class Program
@@ -21,37 +21,15 @@ namespace SmartHouse
             List<Device> obj = new List<Device>();
             List<Scenario> scenario = new List<Scenario>();
             User user = new User();
-            bool isRegister = false;//это типа файл
+            bool isRegister;//это типа файл
             Secutiry security = new Secutiry();
-            string login, password;
+            string login="", password="";
             //int lostPassword = 0;
             //считываем с файла юзер
             //и бул переменная
-
-            //
-            //как то считать с файла инфу
-            if (isRegister)
-            {
-                bool isRegisterSucces = false;
-                while (!isRegisterSucces)
-                {
-                    Console.WriteLine("Введите логин");
-                    login = Console.ReadLine();
-                    Console.WriteLine("Введите пароль");
-                    password = Console.ReadLine();
-                    if (security.CheckLogin(login) && security.CheckPassword(password))
-                    {
-                        isRegisterSucces = true;
-                    }
-                    else
-                    {
-                        Console.WriteLine("Вы ввели неправильный логин или пароль. Повторите попытку.");
-                        
-                    }
-                }
-
-            }
-            else
+            
+            string way = (Directory.GetCurrentDirectory()+@"\User.bin");
+            if (!File.Exists(way))
             {
                 bool isRegisterSucces = false;
                 while (!isRegisterSucces)
@@ -71,12 +49,52 @@ namespace SmartHouse
                         isRegisterSucces = true;
                     }
                 }
-               
+                isRegister = true;
                 user.CreationDate = DateTime.Now;
                 Console.WriteLine("Вы успешно зарегистрировались");
                 Console.ReadLine();
-                //Записываем юзера в файл
+                using (BinaryWriter writer = new BinaryWriter(new FileStream(way, FileMode.OpenOrCreate)))
+                {
+                    writer.Write(login);
+                    writer.Write(password);
+                    writer.Write(isRegister);
+                    writer.Write(user.CreationDate.ToString());
+                }
             }
+            else
+            {
+                using (BinaryReader reader = new BinaryReader(new FileStream(way, FileMode.OpenOrCreate)))
+                {
+                    login = reader.ReadString();
+                    password = reader.ReadString();
+                    isRegister = reader.ReadBoolean();
+                    string time = reader.ReadString();
+                    DateTime date = user.CreationDate;
+                    DateTime.TryParse(time,  out date);
+                    user.CreationDate = date;
+                }
+                bool isRegisterSucces = false;
+                
+                while (!isRegisterSucces)
+                {
+                    Console.WriteLine("Введите логин");
+                    security.Login = Console.ReadLine();
+                    Console.WriteLine("Введите пароль");
+                    security.Password = Console.ReadLine();
+                    if (security.CheckLogin(login) && security.CheckPassword(password))
+                    {
+                        isRegisterSucces = true;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Вы ввели неправильный логин или пароль. Повторите попытку.");
+
+                    }
+                }
+            }
+           
+            //
+            //как то считать с файла инфу
 
 
             #region Menu
