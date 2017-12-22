@@ -18,7 +18,7 @@ namespace SmartHouse
             
             
 
-            List<Device> obj = new List<Device>();
+           // List<Device> obj = new List<Device>();
             List<Room> rooms = new List<Room>();
             List<Scenario> scenario = new List<Scenario>();
             User user = new User();
