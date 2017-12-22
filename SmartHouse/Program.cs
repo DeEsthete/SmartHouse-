@@ -99,7 +99,7 @@ namespace SmartHouse
 
 
             #region Menu
-            string[] stringsMainMenu = { "Добавить устройство", "Добавить сценарий", "Просмотреть сценарии", "Удалить сценарий", "Просмотреть устройства", "Удалить устройство","Включить/Выключить устройство", "Выход" };
+            string[] stringsMainMenu = { "Добавить комнату","Добавить устройство", "Добавить сценарий", "Просмотреть сценарии", "Удалить сценарий", "Просмотреть устройства", "Удалить устройство","Включить/Выключить устройство", "Выход" };
 
             ConsoleMenu mainMenu = new ConsoleMenu(stringsMainMenu);
             int mainMenuResult;
@@ -113,91 +113,126 @@ namespace SmartHouse
                 {
 
 
-
-
                     case 1:
-                        string[] stringsDeviceMenu = { "Датчик", "Устройство", "Назад" };
-                        ConsoleMenu deviceMenu = new ConsoleMenu(stringsDeviceMenu);
-                        int deviceMenuResult;
+                        Room roomTemp = new Room();
+                        Console.WriteLine("Введите имя комнаты");
+                        roomTemp.Name = Console.ReadLine();
+                        rooms.Add(roomTemp);
+                        break;
+
+                    case 2:
+                        if (rooms.Count == 0)
+                        {
+                            Console.WriteLine("Нету комнат");
+                            Console.ReadLine();
+                            break;
+                        }
+                        //------------------------------------------------------------------------------------------------------------------------------------
+                        string[] stringsRoomMenu = new string[rooms.Count + 1];
+                        for (int i = 0; i < rooms.Count; i++)
+                        {
+                            stringsRoomMenu[i] = rooms[i].Name;
+                        }
+                        stringsRoomMenu[rooms.Count] = "Назад";
+                        ConsoleMenu roomMenu = new ConsoleMenu(stringsRoomMenu);
+                        int roomMenuResult;
                         do
                         {
-                            deviceMenuResult = deviceMenu.PrintMenu();
-                            deviceMenuResult++;
-
-
-                            switch (deviceMenuResult)
+                            roomMenuResult = roomMenu.PrintMenu();
+                            roomMenuResult++;
+                            if (roomMenuResult != rooms.Count + 1)
                             {
-                                case 1:
-                                    string[] stringsSensorsMenu = { "Добавить датчик движения", "Добавить датчик температуры", "Добавить датчик открытия", "Добавить датчик для контроля электроэнергией", "Назад" };
-                                    ConsoleMenu sensorMenu = new ConsoleMenu(stringsSensorsMenu);
-                                    int sensorMenuResult;
-                                    do
+                                
+
+                                string[] stringsDeviceMenu = { "Датчик", "Устройство", "Назад" };
+                                ConsoleMenu deviceMenu = new ConsoleMenu(stringsDeviceMenu);
+                                int deviceMenuResult;
+                                do
+                                {
+                                    deviceMenuResult = deviceMenu.PrintMenu();
+                                    deviceMenuResult++;
+
+
+                                    switch (deviceMenuResult)
                                     {
-                                        sensorMenuResult = sensorMenu.PrintMenu();
-                                        sensorMenuResult++;
+                                        case 1:
+                                            string[] stringsSensorsMenu = { "Добавить датчик движения", "Добавить датчик температуры", "Добавить датчик открытия", "Добавить датчик для контроля электроэнергией", "Назад" };
+                                            ConsoleMenu sensorMenu = new ConsoleMenu(stringsSensorsMenu);
+                                            int sensorMenuResult;
+                                            do
+                                            {
+                                                sensorMenuResult = sensorMenu.PrintMenu();
+                                                sensorMenuResult++;
 
 
-                                        switch (sensorMenuResult)
-                                        {
-                                            case 1:
-                                                MoovingSensor moovingSensorTemp = new MoovingSensor();
-                                                moovingSensorTemp.Name = string.Format("Датчик движения - {0}",moovingSensorTemp.Id);
-                                                obj.Add(moovingSensorTemp);
-                                                Console.WriteLine("{0} добавлен",moovingSensorTemp.Name);
-                                                Console.ReadLine();
-                                                break;
+                                                switch (sensorMenuResult)
+                                                {
+                                                    case 1:
+                                                        MoovingSensor moovingSensorTemp = new MoovingSensor();
+                                                        moovingSensorTemp.Name = string.Format("Датчик движения - {0}", moovingSensorTemp.Id);
+                                                        rooms[roomMenuResult-1].Device.Add(moovingSensorTemp);
+                                                        Console.WriteLine("{0} добавлен", moovingSensorTemp.Name);
+                                                        Console.ReadLine();
+                                                        break;
 
-                                            case 2:
-                                                TemperatureSensor temperatureSensorTemp = new TemperatureSensor();
-                                                temperatureSensorTemp.Name = string.Format("Датчик температуры - {0}",temperatureSensorTemp.Id);
-                                                obj.Add(temperatureSensorTemp);
-                                                Console.WriteLine("{0} добавлен",temperatureSensorTemp.Name);
-                                                Console.ReadLine();
-                                                break;
+                                                    case 2:
+                                                        TemperatureSensor temperatureSensorTemp = new TemperatureSensor();
+                                                        temperatureSensorTemp.Name = string.Format("Датчик температуры - {0}", temperatureSensorTemp.Id);
+                                                        rooms[roomMenuResult - 1].Device.Add(temperatureSensorTemp);
+                                                        Console.WriteLine("{0} добавлен", temperatureSensorTemp.Name);
+                                                        Console.ReadLine();
+                                                        break;
 
-                                            case 3:
-                                                OpenSensor openSensorTemp = new OpenSensor();
-                                                openSensorTemp.Name = string.Format("Датчик открытия - {0}",openSensorTemp.Id);
-                                                obj.Add(openSensorTemp);
-                                                Console.WriteLine("{0} добавлен",openSensorTemp.Name);
-                                                Console.ReadLine();
-                                                break;
+                                                    case 3:
+                                                        OpenSensor openSensorTemp = new OpenSensor();
+                                                        openSensorTemp.Name = string.Format("Датчик открытия - {0}", openSensorTemp.Id);
+                                                        rooms[roomMenuResult - 1].Device.Add(openSensorTemp);
+                                                        Console.WriteLine("{0} добавлен", openSensorTemp.Name);
+                                                        Console.ReadLine();
+                                                        break;
 
-                                            case 4:
-                                                ElectricityPowerSensor electricityPowerSensorTemp;
-                                                electricityPowerSensorTemp = new ElectricityPowerSensor();
-                                                electricityPowerSensorTemp.Name = string.Format("Датчик электроэнергии - {0}",electricityPowerSensorTemp.Id);
-                                                obj.Add(electricityPowerSensorTemp);
-                                                Console.WriteLine("{0} добавлен",electricityPowerSensorTemp.Name);
-                                                Console.ReadLine();
-                                                break;
-                                        }
+                                                    case 4:
+                                                        ElectricityPowerSensor electricityPowerSensorTemp;
+                                                        electricityPowerSensorTemp = new ElectricityPowerSensor();
+                                                        electricityPowerSensorTemp.Name = string.Format("Датчик электроэнергии - {0}", electricityPowerSensorTemp.Id);
+                                                        rooms[roomMenuResult - 1].Device.Add(electricityPowerSensorTemp);
+                                                        Console.WriteLine("{0} добавлен", electricityPowerSensorTemp.Name);
+                                                        Console.ReadLine();
+                                                        break;
+                                                }
 
 
+                                            }
+                                            while (sensorMenuResult != stringsSensorsMenu.Length);
+                                            break;
+
+
+                                        case 2:
+                                            Device deviceTemp = new Device();
+                                            Console.WriteLine("Введите имя устройства");
+                                            deviceTemp.Name = Console.ReadLine();
+                                            deviceTemp.IsOn = false;
+                                            rooms[roomMenuResult - 1].Device.Add(deviceTemp);
+                                            Console.WriteLine("Устройство добавлено");
+                                            Console.ReadLine();
+                                            break;
                                     }
-                                    while (sensorMenuResult != stringsSensorsMenu.Length);
-                                    break;
 
 
-                                case 2:
-                                    Device deviceTemp = new Device();
-                                    Console.WriteLine("Введите имя устройства");
-                                    deviceTemp.Name = Console.ReadLine();
-                                    deviceTemp.IsOn = false;
-                                    obj.Add(deviceTemp);
-                                    Console.WriteLine("Устройство добавлено");
-                                    Console.ReadLine();
-                                    break;
+                                    //Console.ReadKey();
+                                } while (deviceMenuResult != stringsDeviceMenu.Length);
+                                //------------------------------------------------------------------------------------------------------------------------
                             }
+                            break;
+                        } while (roomMenuResult != stringsRoomMenu.Length);
 
-
-                            //Console.ReadKey();
-                        } while (deviceMenuResult != stringsDeviceMenu.Length);
+                        //---------------------------------------------------------------------------------------------------------------------------------------
+                      
                         break;
 
 
 
-                    case 2:
+                    case 3:
                         //string[] stringsScenarioMenu = { "Выбрать устройство", "Назначить время", "Что сделать с уcтройством", "Назад" };
                         //ConsoleMenu scenarioMenu = new ConsoleMenu(stringsScenarioMenu);
                         //int scenarioMenuResult;
@@ -205,7 +240,13 @@ namespace SmartHouse
                         //{
                         //    scenarioMenuResult = scenarioMenu.PrintMenu();
                         //    scenarioMenuResult++;
-                        if (obj.Count == 0)
+                        if (rooms.Count == 0)
+                        {
+                            Console.WriteLine("Комнат нет");
+                            Console.ReadLine();
+                            break;
+                        }
+                        else if (rooms[0].Device.Count == 0)
                         {
                             Console.WriteLine("Устройств нет");
                             Console.ReadLine();
@@ -214,90 +255,118 @@ namespace SmartHouse
                         Scenario scenarioTemp = new Scenario();
                         Console.WriteLine("Введите имя сценария");
                         scenarioTemp.Name = Console.ReadLine();
-                        Console.WriteLine("Выберите устройство");
+                        Console.WriteLine("Выберите комнату");
                         Console.ReadLine();
-                        string[] stringsDeviceeMenu = new string[obj.Count + 1];
-                        for (int i = 0; i < obj.Count; i++)
+                      
+
+                        string[] stringsRoommMenu = new string[rooms.Count + 1];
+                        for (int i = 0; i < rooms.Count; i++)
                         {
-                            stringsDeviceeMenu[i] = obj[i].Name;
+                            stringsRoommMenu[i] = rooms[i].Name;
                         }
 
-                        stringsDeviceeMenu[obj.Count] = " ";
+                        stringsRoommMenu[rooms.Count] = " ";
 
-                        ConsoleMenu deviceeMenu = new ConsoleMenu(stringsDeviceeMenu);
-                        int deviceeMenuResult;
+                        ConsoleMenu rommMenu = new ConsoleMenu(stringsRoommMenu);
+                        int rommMenuResult;
                         do
                         {
-                            deviceeMenuResult = deviceeMenu.PrintMenu();
-                            deviceeMenuResult++;
-                            if (deviceeMenuResult != obj.Count + 1)
+                            rommMenuResult = rommMenu.PrintMenu();
+                            rommMenuResult++;
+                            if (rommMenuResult != rooms.Count + 1)
                             {
-                                scenarioTemp.device = obj[deviceeMenuResult - 1];
+
+                                Console.WriteLine("Выберите устройство");
+                                Console.ReadLine();
+                                string[] stringsDeviceeMenu = new string[rooms[rommMenuResult-1].Device.Count + 1];
+                                for (int i = 0; i < rooms[rommMenuResult - 1].Device.Count; i++)
+                                {
+                                    stringsDeviceeMenu[i] = rooms[rommMenuResult - 1].Device[i].Name;
+                                }
+
+                                stringsDeviceeMenu[rooms[rommMenuResult - 1].Device.Count] = " ";
+
+                                ConsoleMenu deviceeMenu = new ConsoleMenu(stringsDeviceeMenu);
+                                int deviceeMenuResult;
+                                do
+                                {
+                                    deviceeMenuResult = deviceeMenu.PrintMenu();
+                                    deviceeMenuResult++;
+                                    if (deviceeMenuResult != rooms[rommMenuResult - 1].Device.Count + 1)
+                                    {
+                                        scenarioTemp.device = rooms[rommMenuResult - 1].Device[deviceeMenuResult - 1];
+
+                                    }
+                                    break;
+                                } while (deviceeMenuResult != stringsDeviceeMenu.Length);
+
+                                string[] stringsOnOffMenu = { "Включить", "Выключить", "  " };
+                                ConsoleMenu onOffMenu = new ConsoleMenu(stringsOnOffMenu);
+                                int onOffMenuResult;
+                                do
+                                {
+                                    onOffMenuResult = onOffMenu.PrintMenu();
+                                    onOffMenuResult++;
+
+
+
+                                    switch (onOffMenuResult)
+                                    {
+                                        case 1:
+                                            //занести в сценарий что устройство включается
+                                            scenarioTemp.IsOn = true;
+                                            Console.WriteLine("Устройство будет включено");
+                                            Console.ReadLine();
+                                            break;
+
+                                        case 2:
+                                            //занести в сценарий что устройство выключается
+                                            scenarioTemp.IsOn = false;
+                                            Console.WriteLine("Устройство будет выключено");
+                                            Console.ReadLine();
+                                            break;
+
+                                    }
+
+                                    break;
+
+                                } while (onOffMenuResult != stringsOnOffMenu.Length);
+                                /*} while (scenarioMenuResult != stringsScenarioMenu.Length);*/
+                                Console.WriteLine("Введите время; Minute, Hour, Day of week");
+                                int minute = 0;
+                                int hour = 0;
+                                // int dayOfWeek=0;
+                                bool succes = false;
+                                while (!succes)
+                                {
+                                    Console.Write("Hour - ");
+                                    succes = int.TryParse(Console.ReadLine(), out hour);
+                                    Console.Write("Minute - ");
+                                    succes = int.TryParse(Console.ReadLine(), out minute);
+                                    //Console.Write("Day of week -  (0 - 6)");
+                                    //succes = int.TryParse(Console.ReadLine(), out dayOfWeek);
+                                    if (!succes)
+                                    {
+                                        Console.WriteLine("Вы ввели неверное время ");
+                                        Console.WriteLine();
+                                    }
+                                }
+                                DateTime dateTime = new DateTime(2000, 11, 11, hour, minute, 0);
+                                //scenarioTemp.DayOfWeek = (DayOfWeek)Enum.Parse(typeof(DayOfWeek), dayOfWeek.ToString());
+                                scenarioTemp.time = dateTime;
+                                scenario.Add(scenarioTemp);
+                                Console.WriteLine("Сценарий добавлен");
+                                Console.ReadLine();
+
 
                             }
                             break;
-                        } while (deviceeMenuResult != stringsDeviceeMenu.Length);
-
-                        string[] stringsOnOffMenu = { "Включить", "Выключить", "  " };
-                        ConsoleMenu onOffMenu = new ConsoleMenu(stringsOnOffMenu);
-                        int onOffMenuResult;
-                        do
-                        {
-                            onOffMenuResult = onOffMenu.PrintMenu();
-                            onOffMenuResult++;
-
-
-
-                            switch (onOffMenuResult)
-                            {
-                                case 1:
-                                    //занести в сценарий что устройство включается
-                                    scenarioTemp.IsOn = true;
-                                    Console.WriteLine("Устройство будет включено");
-                                    Console.ReadLine();
-                                    break;
-
-                                case 2:
-                                    //занести в сценарий что устройство выключается
-                                    scenarioTemp.IsOn = false;
-                                    Console.WriteLine("Устройство будет выключено");
-                                    Console.ReadLine();
-                                    break;
-
-                            }
-
-                            break;
-
-                        } while (onOffMenuResult != stringsOnOffMenu.Length);
-                        /*} while (scenarioMenuResult != stringsScenarioMenu.Length);*/
-                        Console.WriteLine("Введите время; Minute, Hour, Day of week");
-                        int minute=0;
-                        int hour=0;
-                        int dayOfWeek=0;
-                        bool succes = false;
-                        while (!succes)
-                        {
-                            Console.Write("Hour - ");
-                            succes = int.TryParse(Console.ReadLine(), out hour);
-                            Console.Write("Minute - ");
-                            succes = int.TryParse(Console.ReadLine(), out minute);
-                            //Console.Write("Day of week -  (0 - 6)");
-                            //succes = int.TryParse(Console.ReadLine(), out dayOfWeek);
-                            if (!succes)
-                            {
-                                Console.WriteLine("Вы ввели неверное время ");
-                                Console.WriteLine();
-                            }
-                        }
-                        DateTime dateTime = new DateTime(2000, 11, 11, hour, minute, 0);
-                        //scenarioTemp.DayOfWeek = (DayOfWeek)Enum.Parse(typeof(DayOfWeek), dayOfWeek.ToString());
-                        scenarioTemp.time = dateTime;
-                        scenario.Add(scenarioTemp);
-                        Console.WriteLine("Сценарий добавлен");
-                        Console.ReadLine();
+                        } while (rommMenuResult != stringsRoommMenu.Length);
+                        //-------------------------------------------------------------------------------------------------------------------------------
+                       
                         break;
 
-                    case 3:
+                    case 4:
                         //выводятся все сценарии 
                         //
                         //
@@ -326,7 +395,7 @@ namespace SmartHouse
                         Console.ReadLine();
                         break;
 
-                    case 4:
+                    case 5:
                         //создается массив строк на количество сценариев и один сценарий будет 1 строкой и делается менюшка нужна проверка на наличие сценариев
                         //
                         //
@@ -364,102 +433,191 @@ namespace SmartHouse
 
 
 
-                    case 5:
+                    case 6:
                         //Вывод всех устройств 
                         //
                         //
                         //
                         //
-                        if (obj.Count == 0)
+                        if (rooms.Count == 0)
+                        {
+                            Console.WriteLine("Комнат нет");
+                            Console.ReadLine();
+                            break;
+                        }
+                        else if (rooms[0].Device.Count == 0)
                         {
                             Console.WriteLine("Устройств нет");
                             Console.ReadLine();
                             break;
                         }
-                        for (int i = 0; i < obj.Count; i++)
+                        for (int j = 0; j < rooms.Count; j++)
                         {
-                            Console.WriteLine("Имя устройства - {0}", obj[i].Name);
-                            if (obj[i].IsOn)
-                            {
-                                Console.WriteLine("Устройство включаено");
+                            Console.WriteLine("**************************************");
+                            Console.WriteLine("Комната - {0}",rooms[j].Name);
+                            Console.WriteLine("**************************************");
+                            if (rooms[j].Device.Count != 0) {
+                                for (int i = 0; i < rooms[j].Device.Count; i++)
+                                {
+                                    Console.WriteLine("Имя устройства - {0}", rooms[j].Device[i].Name);
+                                    if (rooms[j].Device[i].IsOn)
+                                    {
+                                        Console.WriteLine("Устройство включаено");
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("Устройство выключено");
+                                    }
+                                   
+                                }
                             }
                             else
                             {
-                                Console.WriteLine("Устройство выключено");
+                                Console.WriteLine("В комнате нет устройств");
                             }
-                            Console.WriteLine("**************************************");
                         }
                         Console.ReadLine();
                         break;
 
-                    case 6:
-                        if (obj.Count == 0)
+                    case 7:
+                        if (rooms.Count == 0)
+                        {
+                            Console.WriteLine("Комнат нет");
+                            Console.ReadLine();
+                            break;
+                        }
+                        else if (rooms[0].Device.Count == 0)
                         {
                             Console.WriteLine("Устройств нет");
                             Console.ReadLine();
                             break;
                         }
 
-                        string[] stringsDeleteoMenu = new string[obj.Count + 1];
-                        for (int i = 0; i < obj.Count; i++)
+                        //*********************************************************************************
+
+
+                        string[] stringsRomMenu = new string[rooms.Count + 1];
+                        for (int i = 0; i < rooms.Count; i++)
                         {
-                            stringsDeleteoMenu[i] = obj[i].Name;
+                            stringsRomMenu[i] = rooms[i].Name;
                         }
-                        stringsDeleteoMenu[obj.Count] = "Назад";
-                        ConsoleMenu deleteoMenu = new ConsoleMenu(stringsDeleteoMenu);
-                        int deleteoMenuResult;
+
+                        stringsRomMenu[rooms.Count] = "Назад";
+
+                        ConsoleMenu romMenu = new ConsoleMenu(stringsRomMenu);
+                        int romMenuResult;
                         do
                         {
-                            deleteoMenuResult = deleteoMenu.PrintMenu();
-                            deleteoMenuResult++;
-                            if (deleteoMenuResult != obj.Count + 1)
+                            romMenuResult = romMenu.PrintMenu();
+                            romMenuResult++;
+                            if (romMenuResult != rooms.Count + 1)
                             {
-                                obj.RemoveAt(deleteoMenuResult - 1);
-                                Console.WriteLine("Устройство Удалено");
-                                Console.ReadLine();
+                                if (rooms[0].Device.Count == 0)
+                                {
+                                    Console.WriteLine("Устройств нет");
+                                    Console.ReadLine();
+                                    break;
+                                }
+                                string[] stringsDeleteoMenu = new string[rooms[romMenuResult-1].Device.Count + 1];
+                                for (int i = 0; i < rooms[romMenuResult - 1].Device.Count; i++)
+                                {
+                                    stringsDeleteoMenu[i] = rooms[romMenuResult - 1].Device[i].Name;
+                                }
+                                stringsDeleteoMenu[rooms[romMenuResult - 1].Device.Count] = " ";
+                                ConsoleMenu deleteoMenu = new ConsoleMenu(stringsDeleteoMenu);
+                                int deleteoMenuResult;
+                                do
+                                {
+                                    deleteoMenuResult = deleteoMenu.PrintMenu();
+                                    deleteoMenuResult++;
+                                    if (deleteoMenuResult != rooms[romMenuResult - 1].Device.Count + 1)
+                                    {
+                                        rooms[romMenuResult - 1].Device.RemoveAt(deleteoMenuResult - 1);
+                                        Console.WriteLine("Устройство Удалено");
+                                        Console.ReadLine();
+                                       
+                                    }
+                                    break;
+                                } while (deleteoMenuResult != stringsDeleteoMenu.Length);
 
                             }
-                            break;
-                        } while (deleteoMenuResult != stringsDeleteoMenu.Length);
+
+                            } while (romMenuResult != stringsRomMenu.Length) ;
+
+
+
+                            //************************************************************************************************
+
+                            
                         break;
 
-                    case 7:
-                        if (obj.Count == 0)
+                    case 8:
+                        if (rooms.Count == 0)
+                        {
+                            Console.WriteLine("Комнат нет");
+                            Console.ReadLine();
+                            break;
+                        }
+                        else if (rooms[0].Device.Count == 0)
                         {
                             Console.WriteLine("Устройств нет");
                             Console.ReadLine();
                             break;
                         }
 
-                        string[] stringsOnMenu = new string[obj.Count + 1];
-                        for (int i = 0; i < obj.Count; i++)
+                        string[] stringsRromMenu = new string[rooms.Count + 1];
+                        for (int i = 0; i < rooms.Count; i++)
                         {
-                            stringsOnMenu[i] = obj[i].Name;
+                            stringsRromMenu[i] = rooms[i].Name;
                         }
-                        stringsOnMenu[obj.Count] = "Назад";
-                        ConsoleMenu onMenu = new ConsoleMenu(stringsOnMenu);
-                        int onMenuResult;
+
+                        stringsRromMenu[rooms.Count] = "Назад";
+
+                        ConsoleMenu rromMenu = new ConsoleMenu(stringsRromMenu);
+                        int rromMenuResult;
                         do
                         {
-                           onMenuResult = onMenu.PrintMenu();
-                            onMenuResult++;
-                            if (onMenuResult != obj.Count + 1)
+                            rromMenuResult = rromMenu.PrintMenu();
+                            rromMenuResult++;
+                            if (rromMenuResult != rooms.Count + 1)
                             {
-                                Logic logic = new Logic();
-                                if (obj[onMenuResult - 1].IsOn == true)
+
+                                string[] stringsOnMenu = new string[rooms[rromMenuResult-1].Device.Count + 1];
+                                for (int i = 0; i < rooms[rromMenuResult - 1].Device.Count; i++)
                                 {
-                                    obj[onMenuResult - 1].TurnOff();
-                                    logic.Ardu(obj[onMenuResult - 1].IsOn);
+                                    stringsOnMenu[i] = rooms[rromMenuResult - 1].Device[i].Name;
                                 }
-                                else
+                                stringsOnMenu[rooms[rromMenuResult - 1].Device.Count] = "Назад";
+                                ConsoleMenu onMenu = new ConsoleMenu(stringsOnMenu);
+                                int onMenuResult;
+                                do
                                 {
-                                    obj[onMenuResult - 1].TurnOn();
-                                    logic.Ardu(obj[onMenuResult - 1].IsOn);
-                                }
+                                    onMenuResult = onMenu.PrintMenu();
+                                    onMenuResult++;
+                                    if (onMenuResult != rooms[rromMenuResult - 1].Device.Count + 1)
+                                    {
+                                        Logic logic = new Logic();
+                                        if (rooms[rromMenuResult - 1].Device[onMenuResult - 1].IsOn == true)
+                                        {
+                                            rooms[rromMenuResult - 1].Device[onMenuResult - 1].TurnOff();
+                                            logic.Ardu(rooms[rromMenuResult - 1].Device[onMenuResult - 1].IsOn);
+                                        }
+                                        else
+                                        {
+                                            rooms[rromMenuResult - 1].Device[onMenuResult - 1].TurnOn();
+                                            logic.Ardu(rooms[rromMenuResult - 1].Device[onMenuResult - 1].IsOn);
+                                        }
+
+                                    }
+                                    break;
+                                } while (onMenuResult != stringsOnMenu.Length);
 
                             }
-                            break;
-                        } while (onMenuResult != stringsOnMenu.Length);
+
+                        } while (rromMenuResult != stringsRromMenu.Length);
+
+                        //**************************************************************************************************
+                       
 
                         break;
                 }

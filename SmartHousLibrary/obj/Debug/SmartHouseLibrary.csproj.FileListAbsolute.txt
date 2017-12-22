@@ -20,3 +20,4 @@ C:\Users\СикировТ\Documents\Visual Studio 2017\Projects\SmartHouse\Smart
 C:\Users\СикировТ\Documents\Visual Studio 2017\Projects\SmartHouse\SmartHousLibrary\bin\Debug\SmartHousLibrary.pdb
 C:\Users\СикировТ\Documents\Visual Studio 2017\Projects\SmartHouse\SmartHousLibrary\bin\Debug\Microsoft.IdentityModel.Logging.dll
 C:\Users\ПавловЕ\Desktop\cow\SmartHousLibrary\bin\Debug\Microsoft.IdentityModel.Logging.dll
+C:\My Documents\Visual Studio 2017\Projects\SmartHouse\SmartHousLibrary\bin\Debug\Microsoft.IdentityModel.Logging.dll

@@ -9,7 +9,7 @@ namespace SmartHouseLibrary
 {
     public class Room:Device
     {
-        List<Device> Device { get; set; }
+       public List<Device> Device { get; set; }
 
         public Room()
         {
