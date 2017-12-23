@@ -19,3 +19,11 @@ C:\Users\СикировТ\Documents\Visual Studio 2017\Projects\SmartHouse\Senso
 C:\Users\СикировТ\Documents\Visual Studio 2017\Projects\SmartHouse\Sensors\obj\Debug\Sensors.csprojResolveAssemblyReference.cache
 C:\Users\СикировТ\Documents\Visual Studio 2017\Projects\SmartHouse\Sensors\obj\Debug\Sensors.dll
 C:\Users\СикировТ\Documents\Visual Studio 2017\Projects\SmartHouse\Sensors\obj\Debug\Sensors.pdb
+C:\Users\djoni\Desktop\smartHouse\Sensors\bin\Debug\Sensors.dll
+C:\Users\djoni\Desktop\smartHouse\Sensors\bin\Debug\Sensors.pdb
+C:\Users\djoni\Desktop\smartHouse\Sensors\bin\Debug\SmartHousLibrary.dll
+C:\Users\djoni\Desktop\smartHouse\Sensors\bin\Debug\SmartHousLibrary.pdb
+C:\Users\djoni\Desktop\smartHouse\Sensors\obj\Debug\Sensors.csprojResolveAssemblyReference.cache
+C:\Users\djoni\Desktop\smartHouse\Sensors\obj\Debug\Sensors.csproj.CoreCompileInputs.cache
+C:\Users\djoni\Desktop\smartHouse\Sensors\obj\Debug\Sensors.dll
+C:\Users\djoni\Desktop\smartHouse\Sensors\obj\Debug\Sensors.pdb

@@ -10,7 +10,6 @@ namespace SmartHousLibrary
     public class Scenario : Device
     {
         public Device device { set; get; }
-        public bool IsOn { set; get; }
         public DateTime time { set; get; }
         //public DayOfWeek DayOfWeek { get; set; }
     }

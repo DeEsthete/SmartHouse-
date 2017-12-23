@@ -36,3 +36,14 @@ C:\Users\СикировТ\Documents\Visual Studio 2017\Projects\SmartHouse\Smart
 C:\Users\СикировТ\Documents\Visual Studio 2017\Projects\SmartHouse\SmartHouse\bin\Debug\SmartHousLibrary.dll
 C:\Users\СикировТ\Documents\Visual Studio 2017\Projects\SmartHouse\SmartHouse\bin\Debug\Sensors.pdb
 C:\Users\СикировТ\Documents\Visual Studio 2017\Projects\SmartHouse\SmartHouse\bin\Debug\SmartHousLibrary.pdb
+C:\Users\djoni\Desktop\smartHouse\SmartHouse\bin\Debug\SmartHouse.exe.config
+C:\Users\djoni\Desktop\smartHouse\SmartHouse\bin\Debug\SmartHouse.exe
+C:\Users\djoni\Desktop\smartHouse\SmartHouse\bin\Debug\SmartHouse.pdb
+C:\Users\djoni\Desktop\smartHouse\SmartHouse\bin\Debug\Sensors.dll
+C:\Users\djoni\Desktop\smartHouse\SmartHouse\bin\Debug\SmartHousLibrary.dll
+C:\Users\djoni\Desktop\smartHouse\SmartHouse\bin\Debug\Sensors.pdb
+C:\Users\djoni\Desktop\smartHouse\SmartHouse\bin\Debug\SmartHousLibrary.pdb
+C:\Users\djoni\Desktop\smartHouse\SmartHouse\obj\Debug\SmartHouse.csprojResolveAssemblyReference.cache
+C:\Users\djoni\Desktop\smartHouse\SmartHouse\obj\Debug\SmartHouse.csproj.CoreCompileInputs.cache
+C:\Users\djoni\Desktop\smartHouse\SmartHouse\obj\Debug\SmartHouse.exe
+C:\Users\djoni\Desktop\smartHouse\SmartHouse\obj\Debug\SmartHouse.pdb

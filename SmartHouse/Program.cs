@@ -15,10 +15,9 @@ namespace SmartHouse
         static void Main(string[] args)
         {
             //Main per
-            
-            
 
-           // List<Device> obj = new List<Device>();
+            #region Margins(поля)
+            // List<Device> obj = new List<Device>();
             List<Room> rooms = new List<Room>();
             List<Scenario> scenario = new List<Scenario>();
             User user = new User();
@@ -28,7 +27,9 @@ namespace SmartHouse
             //int lostPassword = 0;
             //считываем с файла юзер
             //и бул переменная
-            
+            #endregion
+
+            #region Registration
             string way = (Directory.GetCurrentDirectory()+@"\User.bin");
             if (!File.Exists(way))
             {
@@ -93,10 +94,10 @@ namespace SmartHouse
                     }
                 }
             }
-           
+            #endregion
+
             //
             //как то считать с файла инфу
-
 
             #region Menu
             string[] stringsMainMenu = { "Добавить комнату","Добавить устройство", "Добавить сценарий", "Просмотреть сценарии", "Удалить сценарий", "Просмотреть устройства", "Удалить устройство","Включить/Выключить устройство", "Выход" };
@@ -623,7 +624,39 @@ namespace SmartHouse
                 }
             } while (mainMenuResult != stringsMainMenu.Length);
             #endregion
+            #region FileSave
+            string waySaveScenario = (Directory.GetCurrentDirectory() + @"\Scenario.bin");
+            using (BinaryWriter writer = new BinaryWriter(new FileStream(waySaveScenario, FileMode.OpenOrCreate)))
+            {
+                for (int i = 0; i < scenario.Count; i++)
+                {
+                    writer.Write(scenario[i].Id.ToString());
+                    writer.Write(scenario[i].Name);
 
+                    writer.Write(scenario[i].device.Id.ToString());
+                    writer.Write(scenario[i].device.Name);
+                    writer.Write(scenario[i].device.IsOn);
+
+                    writer.Write(scenario[i].time.ToString());
+                }
+            }
+            string waySaveRoom = (Directory.GetCurrentDirectory() + @"\Rooms.bin");
+            using (BinaryWriter writer = new BinaryWriter(new FileStream(waySaveRoom, FileMode.OpenOrCreate)))
+            {
+                for (int i = 0; i < scenario.Count; i++)
+                {
+                    writer.Write(rooms[i].Id.ToString());
+                    writer.Write(rooms[i].Name);
+
+                    for (int j = 0; j < rooms[i].Device.Count; j++)
+                    {
+                        writer.Write(rooms[i].Device[j].Id.ToString());
+                        writer.Write(rooms[i].Device[j].Name);
+                        writer.Write(rooms[i].Device[j].IsOn);
+                    }
+                }
+            }
+            #endregion
         }
     }
 }
