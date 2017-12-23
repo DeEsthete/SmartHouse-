@@ -100,7 +100,7 @@ namespace SmartHouse
             //как то считать с файла инфу
 
             #region Menu
-            string[] stringsMainMenu = { "Добавить комнату","Добавить устройство", "Добавить сценарий", "Просмотреть сценарии", "Удалить сценарий", "Просмотреть устройства", "Удалить устройство","Включить/Выключить устройство", "Выход" };
+            string[] stringsMainMenu = { "Добавить комнату", "Добавить устройство", "Добавить сценарий", "Просмотреть сценарии", "Удалить сценарий", "Просмотреть устройства", "Удалить устройство", "Удалить комнату", "Включить/Выключить устройство", "Выход" };
 
             ConsoleMenu mainMenu = new ConsoleMenu(stringsMainMenu);
             int mainMenuResult;
@@ -118,7 +118,14 @@ namespace SmartHouse
                         Room roomTemp = new Room();
                         Console.WriteLine("Введите имя комнаты");
                         roomTemp.Name = Console.ReadLine();
+                        if (roomTemp.Name == string.Empty || roomTemp.Name.Contains(" "))
+                        {
+                            Console.WriteLine("Вы ввели некорекктное имя");
+                            Console.ReadLine();
+                            break;
+                        }
                         rooms.Add(roomTemp);
+                        Console.WriteLine("Комната {0} добавлена", roomTemp.Name);
                         break;
 
                     case 2:
@@ -143,7 +150,7 @@ namespace SmartHouse
                             roomMenuResult++;
                             if (roomMenuResult != rooms.Count + 1)
                             {
-                                
+
 
                                 string[] stringsDeviceMenu = { "Датчик", "Устройство", "Назад" };
                                 ConsoleMenu deviceMenu = new ConsoleMenu(stringsDeviceMenu);
@@ -171,7 +178,7 @@ namespace SmartHouse
                                                     case 1:
                                                         MoovingSensor moovingSensorTemp = new MoovingSensor();
                                                         moovingSensorTemp.Name = string.Format("Датчик движения - {0}", moovingSensorTemp.Id);
-                                                        rooms[roomMenuResult-1].Device.Add(moovingSensorTemp);
+                                                        rooms[roomMenuResult - 1].Device.Add(moovingSensorTemp);
                                                         Console.WriteLine("{0} добавлен", moovingSensorTemp.Name);
                                                         Console.ReadLine();
                                                         break;
@@ -212,6 +219,12 @@ namespace SmartHouse
                                             Device deviceTemp = new Device();
                                             Console.WriteLine("Введите имя устройства");
                                             deviceTemp.Name = Console.ReadLine();
+                                            if (deviceTemp.Name == string.Empty || deviceTemp.Name.Contains(" "))
+                                            {
+                                                Console.WriteLine("Вы ввели некорекктное имя");
+                                                Console.ReadLine();
+                                                break;
+                                            }
                                             deviceTemp.IsOn = false;
                                             rooms[roomMenuResult - 1].Device.Add(deviceTemp);
                                             Console.WriteLine("Устройство добавлено");
@@ -228,7 +241,7 @@ namespace SmartHouse
                         } while (roomMenuResult != stringsRoomMenu.Length);
 
                         //---------------------------------------------------------------------------------------------------------------------------------------
-                      
+
                         break;
 
 
@@ -256,9 +269,15 @@ namespace SmartHouse
                         Scenario scenarioTemp = new Scenario();
                         Console.WriteLine("Введите имя сценария");
                         scenarioTemp.Name = Console.ReadLine();
+                        if (scenarioTemp.Name == string.Empty || scenarioTemp.Name.Contains(" "))
+                        {
+                            Console.WriteLine("Вы ввели некорекктное имя");
+                            Console.ReadLine();
+                            break;
+                        }
                         Console.WriteLine("Выберите комнату");
                         Console.ReadLine();
-                      
+
 
                         string[] stringsRoommMenu = new string[rooms.Count + 1];
                         for (int i = 0; i < rooms.Count; i++)
@@ -279,7 +298,7 @@ namespace SmartHouse
 
                                 Console.WriteLine("Выберите устройство");
                                 Console.ReadLine();
-                                string[] stringsDeviceeMenu = new string[rooms[rommMenuResult-1].Device.Count + 1];
+                                string[] stringsDeviceeMenu = new string[rooms[rommMenuResult - 1].Device.Count + 1];
                                 for (int i = 0; i < rooms[rommMenuResult - 1].Device.Count; i++)
                                 {
                                     stringsDeviceeMenu[i] = rooms[rommMenuResult - 1].Device[i].Name;
@@ -364,7 +383,7 @@ namespace SmartHouse
                             break;
                         } while (rommMenuResult != stringsRoommMenu.Length);
                         //-------------------------------------------------------------------------------------------------------------------------------
-                       
+
                         break;
 
                     case 4:
@@ -378,13 +397,13 @@ namespace SmartHouse
                             Console.ReadLine();
                             break;
                         }
-                        for(int i = 0; i < scenario.Count; i++)
+                        for (int i = 0; i < scenario.Count; i++)
                         {
-                            Console.WriteLine("Имя сценария - {0}",scenario[i].Name);
-                            Console.WriteLine("Имя устройства - {0}",scenario[i].device.Name);
+                            Console.WriteLine("Имя сценария - {0}", scenario[i].Name);
+                            Console.WriteLine("Имя устройства - {0}", scenario[i].device.Name);
                             if (scenario[i].IsOn)
                             {
-                                Console.WriteLine("Устройство включается в {0}",scenario[i].time.ToShortTimeString());
+                                Console.WriteLine("Устройство включается в {0}", scenario[i].time.ToShortTimeString());
                                 //Console.WriteLine("Дни включения - {0}",scenario[i].DayOfWeek);
                             }
                             else
@@ -408,8 +427,8 @@ namespace SmartHouse
                             break;
                         }
 
-                        string[] stringsDeleteMenu = new string[scenario.Count+1];
-                        for(int i = 0; i < scenario.Count; i++)
+                        string[] stringsDeleteMenu = new string[scenario.Count + 1];
+                        for (int i = 0; i < scenario.Count; i++)
                         {
                             stringsDeleteMenu[i] = scenario[i].Name;
                         }
@@ -420,16 +439,16 @@ namespace SmartHouse
                         {
                             deleteMenuResult = deleteMenu.PrintMenu();
                             deleteMenuResult++;
-                            if (deleteMenuResult !=scenario.Count+1)
+                            if (deleteMenuResult != scenario.Count + 1)
                             {
                                 scenario.RemoveAt(deleteMenuResult - 1);
                                 Console.WriteLine("Сценарий Удален");
                                 Console.ReadLine();
-                                
+
                             }
                             break;
                         } while (deleteMenuResult != stringsDeleteMenu.Length);
-                            break;
+                        break;
 
 
 
@@ -455,9 +474,10 @@ namespace SmartHouse
                         for (int j = 0; j < rooms.Count; j++)
                         {
                             Console.WriteLine("**************************************");
-                            Console.WriteLine("Комната - {0}",rooms[j].Name);
+                            Console.WriteLine("Комната - {0}", rooms[j].Name);
                             Console.WriteLine("**************************************");
-                            if (rooms[j].Device.Count != 0) {
+                            if (rooms[j].Device.Count != 0)
+                            {
                                 for (int i = 0; i < rooms[j].Device.Count; i++)
                                 {
                                     Console.WriteLine("Имя устройства - {0}", rooms[j].Device[i].Name);
@@ -469,7 +489,7 @@ namespace SmartHouse
                                     {
                                         Console.WriteLine("Устройство выключено");
                                     }
-                                   
+
                                 }
                             }
                             else
@@ -519,12 +539,12 @@ namespace SmartHouse
                                     Console.ReadLine();
                                     break;
                                 }
-                                string[] stringsDeleteoMenu = new string[rooms[romMenuResult-1].Device.Count + 1];
+                                string[] stringsDeleteoMenu = new string[rooms[romMenuResult - 1].Device.Count + 1];
                                 for (int i = 0; i < rooms[romMenuResult - 1].Device.Count; i++)
                                 {
                                     stringsDeleteoMenu[i] = rooms[romMenuResult - 1].Device[i].Name;
                                 }
-                                stringsDeleteoMenu[rooms[romMenuResult - 1].Device.Count] = " ";
+                                stringsDeleteoMenu[rooms[romMenuResult - 1].Device.Count] = "Назад";
                                 ConsoleMenu deleteoMenu = new ConsoleMenu(stringsDeleteoMenu);
                                 int deleteoMenuResult;
                                 do
@@ -536,23 +556,57 @@ namespace SmartHouse
                                         rooms[romMenuResult - 1].Device.RemoveAt(deleteoMenuResult - 1);
                                         Console.WriteLine("Устройство Удалено");
                                         Console.ReadLine();
-                                       
+
                                     }
                                     break;
                                 } while (deleteoMenuResult != stringsDeleteoMenu.Length);
 
                             }
 
-                            } while (romMenuResult != stringsRomMenu.Length) ;
+                        } while (romMenuResult != stringsRomMenu.Length);
 
 
 
-                            //************************************************************************************************
+                        //************************************************************************************************
 
-                            
+
                         break;
 
                     case 8:
+                        if (rooms.Count == 0)
+                        {
+                            Console.WriteLine("Комнат нет");
+                            Console.ReadLine();
+                            break;
+                        }
+
+                        string[] stringsDRomMenu = new string[rooms.Count + 1];
+                        for (int i = 0; i < rooms.Count; i++)
+                        {
+                            stringsDRomMenu[i] = rooms[i].Name;
+                        }
+
+                        stringsDRomMenu[rooms.Count] = "Назад";
+
+                        ConsoleMenu dromMenu = new ConsoleMenu(stringsDRomMenu);
+                        int dromMenuResult;
+                        do
+                        {
+                            dromMenuResult = dromMenu.PrintMenu();
+                            dromMenuResult++;
+                            if (dromMenuResult != rooms.Count + 1)
+                            {
+                                rooms.RemoveAt(dromMenuResult - 1);
+                                Console.WriteLine("Комната удалена");
+                                Console.ReadLine();
+                            }
+                            break;
+
+                        } while (dromMenuResult != stringsDRomMenu.Length);
+
+                        break;
+
+                    case 9:
                         if (rooms.Count == 0)
                         {
                             Console.WriteLine("Комнат нет");
@@ -583,7 +637,7 @@ namespace SmartHouse
                             if (rromMenuResult != rooms.Count + 1)
                             {
 
-                                string[] stringsOnMenu = new string[rooms[rromMenuResult-1].Device.Count + 1];
+                                string[] stringsOnMenu = new string[rooms[rromMenuResult - 1].Device.Count + 1];
                                 for (int i = 0; i < rooms[rromMenuResult - 1].Device.Count; i++)
                                 {
                                     stringsOnMenu[i] = rooms[rromMenuResult - 1].Device[i].Name;
@@ -618,7 +672,7 @@ namespace SmartHouse
                         } while (rromMenuResult != stringsRromMenu.Length);
 
                         //**************************************************************************************************
-                       
+
 
                         break;
                 }

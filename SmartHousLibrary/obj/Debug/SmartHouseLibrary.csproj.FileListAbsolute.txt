@@ -28,3 +28,9 @@ C:\Users\djoni\Desktop\smartHouse\SmartHousLibrary\obj\Debug\SmartHouseLibrary.c
 C:\Users\djoni\Desktop\smartHouse\SmartHousLibrary\obj\Debug\SmartHouseLibrary.csproj.CoreCompileInputs.cache
 C:\Users\djoni\Desktop\smartHouse\SmartHousLibrary\obj\Debug\SmartHousLibrary.dll
 C:\Users\djoni\Desktop\smartHouse\SmartHousLibrary\obj\Debug\SmartHousLibrary.pdb
+C:\My Documents\Visual Studio 2017\Projects\SSSSSmart\SmartHousLibrary\bin\Debug\SmartHousLibrary.dll
+C:\My Documents\Visual Studio 2017\Projects\SSSSSmart\SmartHousLibrary\bin\Debug\SmartHousLibrary.pdb
+C:\My Documents\Visual Studio 2017\Projects\SSSSSmart\SmartHousLibrary\bin\Debug\Microsoft.IdentityModel.Logging.dll
+C:\My Documents\Visual Studio 2017\Projects\SSSSSmart\SmartHousLibrary\obj\Debug\SmartHouseLibrary.csprojResolveAssemblyReference.cache
+C:\My Documents\Visual Studio 2017\Projects\SSSSSmart\SmartHousLibrary\obj\Debug\SmartHousLibrary.dll
+C:\My Documents\Visual Studio 2017\Projects\SSSSSmart\SmartHousLibrary\obj\Debug\SmartHousLibrary.pdb
