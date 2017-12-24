@@ -9,7 +9,7 @@ namespace SmartHouseLibrary
 {
     public class Device:ISwitcher
     {
-        public Guid Id { get; private set; }
+        public Guid Id { get;  set; }
         public string Name { get; set; }
         public bool IsOn { get; set; }
 

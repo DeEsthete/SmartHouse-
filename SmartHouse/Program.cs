@@ -19,7 +19,9 @@ namespace SmartHouse
             #region Margins(поля)
             // List<Device> obj = new List<Device>();
             List<Room> rooms = new List<Room>();
+            
             List<Scenario> scenario = new List<Scenario>();
+        
             User user = new User();
             bool isRegister;//это типа файл
             Secutiry security = new Secutiry();
@@ -85,6 +87,68 @@ namespace SmartHouse
                     security.Password = Console.ReadLine();
                     if (security.CheckLogin(login) && security.CheckPassword(password))
                     {
+                        string wayF = (Directory.GetCurrentDirectory() + @"\Scenario.bin");
+                        using (BinaryReader reader = new BinaryReader(new FileStream(wayF, FileMode.OpenOrCreate)))
+                        {
+                            int countS = reader.ReadInt32();
+                            if (countS == 0)
+                            {
+
+                            }
+                            else
+                            {
+                                for (int i = 0; i < countS; i++)
+                                {
+                                    Scenario scenarioTemp = new Scenario();
+                                    scenarioTemp.device = new Device();
+                                    scenarioTemp.Id = System.Guid.Parse(reader.ReadString());
+                                    scenarioTemp.Name = reader.ReadString();
+                                    scenarioTemp.device.Id = System.Guid.Parse(reader.ReadString());
+                                    scenarioTemp.device.Name = reader.ReadString();
+                                    scenarioTemp.device.IsOn = reader.ReadBoolean();
+                                    scenarioTemp.time = DateTime.Parse(reader.ReadString());
+                                    scenario.Add(scenarioTemp);
+                                  
+                                }
+                            }
+                        }
+
+                        string wayRoom = (Directory.GetCurrentDirectory() + @"\Rooms.bin");
+
+                        using (BinaryReader reader = new BinaryReader(new FileStream(wayRoom, FileMode.OpenOrCreate)))
+                        {
+                            int countS = reader.ReadInt32();
+                            if (countS == 0)
+                            {
+
+                            }
+                            else
+                            {
+                                for (int i = 0; i < countS; i++)
+                                {
+                                    Room roomTemp = new Room();
+                                    roomTemp.Device = new List<Device>();
+                                    roomTemp.Id = System.Guid.Parse(reader.ReadString());
+                                    roomTemp.Name = reader.ReadString();
+                                    int countD = reader.ReadInt32();
+
+                                    for(int j = 0; j < countD; j++)
+                                    {
+                                        Device deviceTemp = new Device();
+                                        deviceTemp.Id = System.Guid.Parse(reader.ReadString());
+                                        deviceTemp.Name= reader.ReadString();
+                                        deviceTemp.IsOn = reader.ReadBoolean();
+                                        roomTemp.Device.Add(deviceTemp);
+                                    }
+
+                                    rooms.Add(roomTemp);
+
+                                }
+                            }
+                        }
+
+
+
                         isRegisterSucces = true;
                     }
                     else
@@ -680,10 +744,15 @@ namespace SmartHouse
             #endregion
             #region FileSave
             string waySaveScenario = (Directory.GetCurrentDirectory() + @"\Scenario.bin");
+            int countRoom = rooms.Count;
+            int countDevice;
+            int countScenario = scenario.Count;
             using (BinaryWriter writer = new BinaryWriter(new FileStream(waySaveScenario, FileMode.OpenOrCreate)))
             {
+                writer.Write(countScenario);
                 for (int i = 0; i < scenario.Count; i++)
                 {
+                    
                     writer.Write(scenario[i].Id.ToString());
                     writer.Write(scenario[i].Name);
 
@@ -697,13 +766,17 @@ namespace SmartHouse
             string waySaveRoom = (Directory.GetCurrentDirectory() + @"\Rooms.bin");
             using (BinaryWriter writer = new BinaryWriter(new FileStream(waySaveRoom, FileMode.OpenOrCreate)))
             {
+                writer.Write(countRoom);
                 for (int i = 0; i < scenario.Count; i++)
                 {
+                    
                     writer.Write(rooms[i].Id.ToString());
                     writer.Write(rooms[i].Name);
-
+                    countDevice = rooms[i].Device.Count;
+                    writer.Write(countDevice);
                     for (int j = 0; j < rooms[i].Device.Count; j++)
                     {
+                        
                         writer.Write(rooms[i].Device[j].Id.ToString());
                         writer.Write(rooms[i].Device[j].Name);
                         writer.Write(rooms[i].Device[j].IsOn);
