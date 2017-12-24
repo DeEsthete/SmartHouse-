@@ -170,6 +170,19 @@ namespace SmartHouse
             int mainMenuResult;
             do
             {
+                if (scenario.Count != 0)
+                {
+                    for(int i = 0; i < scenario.Count; i++)
+                    {
+                        if (scenario[i].time.Hour == DateTime.Now.Hour && scenario[i].time.Minute == DateTime.Now.Minute)
+                        {
+                            scenario[i].device.IsOn = scenario[i].IsOn;
+                            Logic logic = new Logic();
+                            logic.Ardu(scenario[i].device.IsOn);
+                        }
+                        
+                    }
+                }
                 mainMenuResult = mainMenu.PrintMenu();
                 mainMenuResult++;
 
