@@ -26,6 +26,7 @@ namespace SmartHouse
             bool isRegister;//это типа файл
             Secutiry security = new Secutiry();
             string login="", password="";
+            string ip = string.Empty;
             //int lostPassword = 0;
             //считываем с файла юзер
             //и бул переменная
@@ -43,6 +44,8 @@ namespace SmartHouse
                     login = Console.ReadLine();
                     Console.WriteLine("Введите пароль");
                     password = Console.ReadLine();
+                    Console.WriteLine("Введите ваш Ip.");
+                    ip = Console.ReadLine();
                     if (login == string.Empty || login == " " || password == string.Empty || password == " ")
                     {
                         Console.WriteLine("Вы ввели неккоректный логин или пароль");
@@ -59,6 +62,7 @@ namespace SmartHouse
                 Console.ReadLine();
                 using (BinaryWriter writer = new BinaryWriter(new FileStream(way, FileMode.OpenOrCreate)))
                 {
+                    writer.Write(ip);
                     writer.Write(login);
                     writer.Write(password);
                     writer.Write(isRegister);
@@ -69,6 +73,7 @@ namespace SmartHouse
             {
                 using (BinaryReader reader = new BinaryReader(new FileStream(way, FileMode.OpenOrCreate)))
                 {
+                    ip = reader.ReadString();
                     login = reader.ReadString();
                     password = reader.ReadString();
                     isRegister = reader.ReadBoolean();
@@ -124,9 +129,10 @@ namespace SmartHouse
                             }
                             else
                             {
+                                Room roomTemp = new Room();
                                 for (int i = 0; i < countS; i++)
                                 {
-                                    Room roomTemp = new Room();
+                                    
                                     roomTemp.Device = new List<Device>();
                                     roomTemp.Id = System.Guid.Parse(reader.ReadString());
                                     roomTemp.Name = reader.ReadString();
@@ -158,8 +164,9 @@ namespace SmartHouse
                     }
                 }
             }
+            user.Ip = ip;
             #endregion
-
+           
             //
             //как то считать с файла инфу
 
@@ -178,7 +185,7 @@ namespace SmartHouse
                         {
                             scenario[i].device.IsOn = scenario[i].IsOn;
                             Logic logic = new Logic();
-                            logic.Ardu(scenario[i].device.IsOn);
+                            logic.Ardu(scenario[i].device.IsOn,user.Ip);
                         }
                         
                     }
@@ -732,12 +739,12 @@ namespace SmartHouse
                                         if (rooms[rromMenuResult - 1].Device[onMenuResult - 1].IsOn == true)
                                         {
                                             rooms[rromMenuResult - 1].Device[onMenuResult - 1].TurnOff();
-                                            logic.Ardu(rooms[rromMenuResult - 1].Device[onMenuResult - 1].IsOn);
+                                            logic.Ardu(rooms[rromMenuResult - 1].Device[onMenuResult - 1].IsOn,user.Ip);
                                         }
                                         else
                                         {
                                             rooms[rromMenuResult - 1].Device[onMenuResult - 1].TurnOn();
-                                            logic.Ardu(rooms[rromMenuResult - 1].Device[onMenuResult - 1].IsOn);
+                                            logic.Ardu(rooms[rromMenuResult - 1].Device[onMenuResult - 1].IsOn,user.Ip);
                                         }
 
                                     }
@@ -760,7 +767,7 @@ namespace SmartHouse
             int countRoom = rooms.Count;
             int countDevice;
             int countScenario = scenario.Count;
-            using (BinaryWriter writer = new BinaryWriter(new FileStream(waySaveScenario, FileMode.OpenOrCreate)))
+            using (BinaryWriter writer = new BinaryWriter(new FileStream(waySaveScenario, FileMode.Create)))
             {
                 writer.Write(countScenario);
                 for (int i = 0; i < scenario.Count; i++)
@@ -777,7 +784,7 @@ namespace SmartHouse
                 }
             }
             string waySaveRoom = (Directory.GetCurrentDirectory() + @"\Rooms.bin");
-            using (BinaryWriter writer = new BinaryWriter(new FileStream(waySaveRoom, FileMode.OpenOrCreate)))
+            using (BinaryWriter writer = new BinaryWriter(new FileStream(waySaveRoom, FileMode.Create)))
             {
                 writer.Write(countRoom);
                 for (int i = 0; i < scenario.Count; i++)
@@ -797,6 +804,9 @@ namespace SmartHouse
                 }
             }
             #endregion
+
+          
+
         }
     }
 }
